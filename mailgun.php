@@ -88,14 +88,63 @@ class Mailgun
      */
     public function get_option($option, $options = null, $default = false)
     {
+        $constant_values = $this->get_constant_values();
+
         if (is_null($options)) {
             $options = &$this->options;
         }
-        if (isset($options[$option])) {
+
+        if (isset($constant_values[$option])) {
+            return $constant_values[$option];
+        }else if (isset($options[$option])) {
             return $options[$option];
         } else {
             return $default;
         }
+    }
+
+    /**
+     * Get an array of defined constant values, so we can prioritize constants instead of db values.
+     *
+     * @return mixed
+     *
+     * @since 0.1.1
+     */
+    public function get_constant_values() {
+
+        $values = array();
+
+        if (defined('MAILGUN_USEAPI')) {
+            $values['useAPI'] = MAILGUN_USEAPI;
+        } 
+        if (defined('MAILGUN_APIKEY')) {
+            $values['apiKey'] = MAILGUN_APIKEY;
+        } 
+        
+        if (defined('MAILGUN_DOMAIN')) {
+            $values['domain'] = MAILGUN_DOMAIN;
+        }
+
+        if (defined('MAILGUN_USERNAME')) {
+            $values['username'] = MAILGUN_USERNAME;
+        }
+
+        if (defined('MAILGUN_PASSWORD')) {
+            $values['password'] = MAILGUN_PASSWORD;
+        }
+
+        if (defined('MAILGUN_SECURE')) {
+            $values['secure'] = MAILGUN_SECURE;
+        }
+
+        if (defined('MAILGUN_FROM_NAME')) {
+            $values['from-name'] = MAILGUN_FROM_NAME;
+        }
+
+        if (defined('MAILGUN_FROM_ADDRESS')) {
+            $values['from-address'] = MAILGUN_FROM_ADDRESS;
+        }
+        return $values;
     }
 
     /**

@@ -35,11 +35,16 @@
                             <?php _e('Use HTTP API', 'mailgun'); ?>
                         </th>
                         <td>
+                            <?php if (defined('MAILGUN_USEAPI')) : ?>
+                            <p class="description">MAILGUN_USEAPI <?php _e('defined.', 'mailgun'); ?></p>
+                            <?php else : ?>
+
                             <select id="mailgun-api" name="mailgun[useAPI]">
                                 <option value="1"<?php selected('1', $this->get_option('useAPI')); ?>><?php _e('Yes', 'mailgun'); ?></option>
                                 <option value="0"<?php selected('0', $this->get_option('useAPI')); ?>><?php _e('No', 'mailgun'); ?></option>
                             </select>
                             <p class="description"><?php _e('Set this to "No" if your server cannot make outbound HTTP connections or if emails are not being delivered. "No" will cause this plugin to use SMTP. Default "Yes".', 'mailgun'); ?></p>
+                            <?php endif; ?>
                         </td>
                     </tr>
                     <tr valign="top">
@@ -47,8 +52,12 @@
                             <?php _e('Mailgun Domain Name', 'mailgun'); ?>
                         </th>
                         <td>
+                            <?php if (defined('MAILGUN_DOMAIN')) : ?>
+                            <p class="description">MAILGUN_DOMAIN <?php _e('defined.', 'mailgun'); ?></p>
+                            <?php else : ?>
                             <input type="text" class="regular-text" name="mailgun[domain]" value="<?php esc_attr_e($this->get_option('domain')); ?>" placeholder="samples.mailgun.org" />
                             <p class="description"><?php _e('Your Mailgun Domain Name.', 'mailgun'); ?></p>
+                            <?php endif; ?>
                         </td>
                     </tr>
                     <tr valign="top" class="mailgun-api">
@@ -56,8 +65,12 @@
                             <?php _e('API Key', 'mailgun'); ?>
                         </th>
                         <td>
+                            <?php if (defined('MAILGUN_APIKEY')) : ?>
+                            <p class="description">MAILGUN_APIKEY <?php _e('defined.', 'mailgun'); ?></p>
+                            <?php else : ?>
                             <input type="text" class="regular-text" name="mailgun[apiKey]" value="<?php esc_attr_e($this->get_option('apiKey')); ?>" placeholder="key-3ax6xnjp29jd6fds4gc373sgvjxteol0" />
                             <p class="description"><?php _e('Your Mailgun API key, that starts with and includes "key-". Only valid for use with the API.', 'mailgun'); ?></p>
+                            <?php endif; ?>
                         </td>
                     </tr>
                     <tr valign="top" class="mailgun-smtp">
@@ -65,8 +78,12 @@
                             <?php _e('Username', 'mailgun'); ?>
                         </th>
                         <td>
+                            <?php if (defined('MAILGUN_USERNAME')) : ?>
+                            <p class="description">MAILGUN_USERNAME <?php _e('defined.', 'mailgun'); ?></p>
+                            <?php else : ?>
                             <input type="text" class="regular-text" name="mailgun[username]" value="<?php esc_attr_e($this->get_option('username')); ?>" placeholder="postmaster" />
                             <p class="description"><?php _e('Your Mailgun SMTP username. Only valid for use with SMTP.', 'mailgun'); ?></p>
+                            <?php endif; ?>
                         </td>
                     </tr>
                     <tr valign="top" class="mailgun-smtp">
@@ -74,8 +91,12 @@
                             <?php _e('Password', 'mailgun'); ?>
                         </th>
                         <td>
+                            <?php if (defined('MAILGUN_PASSWORD')) : ?>
+                                <p class="description">MAILGUN_PASSWORD <?php _e('defined.', 'mailgun'); ?></p>
+                            <?php else : ?>
                             <input type="text" class="regular-text" name="mailgun[password]" value="<?php esc_attr_e($this->get_option('password')); ?>" placeholder="my-password" />
                             <p class="description"><?php _e('Your Mailgun SMTP password that goes with the above username. Only valid for use with SMTP.', 'mailgun'); ?></p>
+                            <?php endif; ?>
                         </td>
                     </tr>
                     <tr valign="top" class="mailgun-smtp">
@@ -83,11 +104,15 @@
                             <?php _e('Use Secure SMTP', 'mailgun'); ?>
                         </th>
                         <td>
+                            <?php if (defined('MAILGUN_SECURE')) : ?>
+                                <p class="description">MAILGUN_SECURE <?php _e('defined.', 'mailgun'); ?></p>
+                            <?php else : ?>
                             <select name="mailgun[secure]">
                                 <option value="1"<?php selected('1', $this->get_option('secure')); ?>><?php _e('Yes', 'mailgun'); ?></option>
                                 <option value="0"<?php selected('0', $this->get_option('secure')); ?>><?php _e('No', 'mailgun'); ?></option>
                             </select>
                             <p class="description"><?php _e('Set this to "No" if your server cannot establish SSL SMTP connections or if emails are not being delivered. If you set this to "No" your password will be sent in plain text. Only valid for use with SMTP. Default "Yes".', 'mailgun'); ?></p>
+                            <?php endif; ?>
                         </td>
                     </tr>
                     <tr valign="top">
@@ -120,8 +145,12 @@
                             <?php _e('From Address', 'mailgun'); ?>
                         </th>
                         <td>
+                            <?php if (defined('MAILGUN_FROM_ADDRESS')) : ?>
+                                <p class="description">MAILGUN_FROM_ADDRESS <?php _e('defined.', 'mailgun'); ?></p>
+                            <?php else : ?>
                             <input type="text" class="regular-text" name="mailgun[from-address]" value="<?php esc_attr_e($this->get_option('from-address')); ?>" placeholder="wordpress@mydomain.com" />
                             <p class="description"><?php _e('The <address@mydomain.com> part of the sender information (<code>"Excited User &lt;user@samples.mailgun.org&gt;"</code>). This address will appear as the `From` address on sent mail. <strong>It is recommended that the @mydomain portion matches your Mailgun sending domain.</strong>', 'mailgun'); ?></p>
+                            <?php endif; ?>
                         </td>
                     </tr>
                     <tr valign="top">
@@ -129,8 +158,12 @@
                             <?php _e('From Name', 'mailgun'); ?>
                         </th>
                         <td>
+                            <?php if (defined('MAILGUN_FROM_ADDRESS')) : ?>
+                                <p class="description">MAILGUN_FROM_ADDRESS <?php _e('defined.', 'mailgun'); ?></p>
+                            <?php else : ?>
                             <input type="text" class="regular-text" name="mailgun[from-name]" value="<?php esc_attr_e($this->get_option('from-name')); ?>" placeholder="WordPress" />
                             <p class="description"><?php _e('The "User Name" part of the sender information (<code>"Excited User &lt;user@samples.mailgun.org&gt;"</code>).', 'mailgun'); ?></p>
+                            <?php endif; ?>
                         </td>
                     </tr>
                     <tr valign="top">
